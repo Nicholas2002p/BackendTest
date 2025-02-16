@@ -4,11 +4,17 @@ import { createYoga, createSchema, useExtendContext } from "graphql-yoga";
 import { typeDefs } from "./typeDefinitions";
 import { PrismaClient } from "@prisma/client";
 import { Query } from "./query";
-import { Mutation } from "./mutation";
+import { Mutation as MutationFromMutation } from "./mutation";
+import { Mutation as MutationFromTodo } from "./todo"; 
 
 const prisma = new PrismaClient();
 
 const yogaPublicRouter = Router();
+// gotta merge Mutations to have multiple
+const Mutation = {
+  ...MutationFromMutation,
+  ...MutationFromTodo,
+};
 
 const schema = createSchema({
   typeDefs,
