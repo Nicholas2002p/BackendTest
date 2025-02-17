@@ -41,5 +41,6 @@ export const typeDefs = /* GraphQL */ `
 
   type Query {
     hello: String
+    allTodos: [Todo!]
   }
 `;
