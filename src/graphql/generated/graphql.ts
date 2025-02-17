@@ -30,6 +30,7 @@ export type Mutation = {
   createSomething: Something;
   createTodo: Todo;
   updateTodoCompletion: Todo;
+  updateTodoTitle: Todo;
 };
 
 
@@ -45,6 +46,11 @@ export type MutationCreateTodoArgs = {
 
 export type MutationUpdateTodoCompletionArgs = {
   input: UpdateTodoInputCompleted;
+};
+
+
+export type MutationUpdateTodoTitleArgs = {
+  input: UpdateTodoInputTitle;
 };
 
 export type Query = {
@@ -70,6 +76,11 @@ export type Todo = {
 export type UpdateTodoInputCompleted = {
   completed: Scalars['Boolean']['input'];
   id: Scalars['ID']['input'];
+};
+
+export type UpdateTodoInputTitle = {
+  id: Scalars['ID']['input'];
+  title: Scalars['String']['input'];
 };
 
 
@@ -153,6 +164,7 @@ export type ResolversTypes = {
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   Todo: ResolverTypeWrapper<Todo>;
   UpdateTodoInputCompleted: UpdateTodoInputCompleted;
+  UpdateTodoInputTitle: UpdateTodoInputTitle;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -167,12 +179,14 @@ export type ResolversParentTypes = {
   String: Scalars['String']['output'];
   Todo: Todo;
   UpdateTodoInputCompleted: UpdateTodoInputCompleted;
+  UpdateTodoInputTitle: UpdateTodoInputTitle;
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createSomething?: Resolver<ResolversTypes['Something'], ParentType, ContextType, RequireFields<MutationCreateSomethingArgs, 'input'>>;
   createTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationCreateTodoArgs, 'input'>>;
   updateTodoCompletion?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationUpdateTodoCompletionArgs, 'input'>>;
+  updateTodoTitle?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationUpdateTodoTitleArgs, 'input'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {

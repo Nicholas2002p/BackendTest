@@ -52,4 +52,26 @@ export const Mutation: MutationResolvers<Context> = {
       throw new Error('Error updating Todo Completed field');
     }
   },
+    //update Title field
+    updateTodoTitle: async (_, { input }, { prisma }) => {
+    const { id, title } = input; 
+
+    try {
+      const updatedTodo = await prisma.todo.update({
+        where: { id },
+        data: { title, updatedAt: new Date() },
+      });
+
+      return {
+        id: updatedTodo.id,
+        title: updatedTodo.title,
+        completed: updatedTodo.completed,
+        createdAt: updatedTodo.createdAt.toISOString(),
+        updatedAt: updatedTodo.updatedAt.toISOString(),
+      };
+    } catch (error) {
+      console.error('Error updating todo Title field:', error);
+      throw new Error('Error updating Todo Title field');
+    }
+  },
 };

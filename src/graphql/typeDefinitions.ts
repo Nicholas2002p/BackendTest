@@ -13,6 +13,11 @@ export const typeDefs = /* GraphQL */ `
     completed: Boolean!
   }
 
+  input UpdateTodoInputTitle {
+    id: ID!
+    title: String!
+  }
+
   type Something {
     id: ID!
     name: String!
@@ -30,6 +35,8 @@ export const typeDefs = /* GraphQL */ `
     createSomething(input: CreateSomethingInput!): Something!
     createTodo(input: CreateTodoInput!): Todo!
     updateTodoCompletion(input: UpdateTodoInputCompleted!): Todo!
+     updateTodoTitle(input: UpdateTodoInputTitle!): Todo!
+
   }
 
   type Query {
