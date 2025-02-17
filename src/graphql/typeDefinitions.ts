@@ -8,6 +8,11 @@ export const typeDefs = /* GraphQL */ `
     completed: Boolean
   }
 
+  input UpdateTodoInputCompleted {
+    id: ID!
+    completed: Boolean!
+  }
+
   type Something {
     id: ID!
     name: String!
@@ -24,6 +29,7 @@ export const typeDefs = /* GraphQL */ `
   type Mutation {
     createSomething(input: CreateSomethingInput!): Something!
     createTodo(input: CreateTodoInput!): Todo!
+    updateTodoCompletion(input: UpdateTodoInputCompleted!): Todo!
   }
 
   type Query {
