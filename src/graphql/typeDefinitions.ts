@@ -43,5 +43,6 @@ export const typeDefs = /* GraphQL */ `
     hello: String
     allTodos: [Todo!]
     allIncompleteTodos: [Todo!]
+    allCompletedTodos: [Todo!]
   }
 `;
