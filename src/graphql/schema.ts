@@ -3,7 +3,7 @@ import { Router } from "express";
 import { createYoga, createSchema, useExtendContext } from "graphql-yoga";
 import { typeDefs } from "./typeDefinitions";
 import { PrismaClient } from "@prisma/client";
-import { Query } from "./query";
+import { Query as HiQuery, findAllTodo } from "./query";
 import { Mutation as MutationFromMutation } from "./mutation";
 import { Mutation as MutationFromTodo, MutationCompletion, MutationTitle } from "./todo"; 
 
@@ -17,6 +17,10 @@ const Mutation = {
   ...MutationCompletion,
   ...MutationTitle
 };
+const Query = {
+  ...HiQuery,
+  ...findAllTodo,
+}
 
 const schema = createSchema({
   typeDefs,
