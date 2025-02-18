@@ -80,3 +80,17 @@ export const MutationTitle: MutationResolvers<Context> = {
     }
   },
 };
+export const DeleteMutation: MutationResolvers<Context> = {
+  DeleteTodo: async (_, { input }, { prisma }) => {
+    const { id } = input;
+    try {
+      const deletedTodo = await prisma.todo.delete({
+        where: { id },
+      });
+      return `Todo with ID ${deletedTodo.id} deleted successfully`;
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+      return "Error: Todo not found or could not be deleted";
+    }
+  },
+};

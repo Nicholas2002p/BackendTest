@@ -31,10 +31,16 @@ export type IdTodo = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  DeleteTodo?: Maybe<Scalars['String']['output']>;
   createSomething: Something;
   createTodo: Todo;
   updateTodoCompletion: Todo;
   updateTodoTitle: Todo;
+};
+
+
+export type MutationDeleteTodoArgs = {
+  input: IdTodo;
 };
 
 
@@ -198,6 +204,7 @@ export type ResolversParentTypes = {
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  DeleteTodo?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationDeleteTodoArgs, 'input'>>;
   createSomething?: Resolver<ResolversTypes['Something'], ParentType, ContextType, RequireFields<MutationCreateSomethingArgs, 'input'>>;
   createTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationCreateTodoArgs, 'input'>>;
   updateTodoCompletion?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationUpdateTodoCompletionArgs, 'input'>>;

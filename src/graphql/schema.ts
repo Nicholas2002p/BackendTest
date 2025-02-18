@@ -15,6 +15,7 @@ import {
   Mutation as MutationFromTodo,
   MutationCompletion,
   MutationTitle,
+  DeleteMutation
 } from "./todo";
 
 const prisma = new PrismaClient();
@@ -26,6 +27,7 @@ const Mutation = {
   ...MutationFromTodo,
   ...MutationCompletion,
   ...MutationTitle,
+  ...DeleteMutation
 };
 const Query = {
   ...HiQuery,
