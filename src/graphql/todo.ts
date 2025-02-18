@@ -1,3 +1,4 @@
+import { GraphQLError } from "graphql";
 import { Context } from "./context";
 import { MutationResolvers } from "./generated/graphql";
 
@@ -37,6 +38,10 @@ export const MutationCompletion: MutationResolvers<Context> = {
     const { id, completed } = input;
 
     try {
+      const existingTodo = await prisma.todo.findUnique({ where: { id } });
+      if (!existingTodo) {
+        throw new GraphQLError(`Todo with ID ${id} does not exist.`);
+      }
       const updatedTodo = await prisma.todo.update({
         where: { id },
         data: { completed, updatedAt: new Date() },
@@ -62,6 +67,10 @@ export const MutationTitle: MutationResolvers<Context> = {
     const { id, title } = input;
 
     try {
+      const existingTodo = await prisma.todo.findUnique({ where: { id } });
+      if (!existingTodo) {
+        throw new GraphQLError(`Todo with ID ${id} does not exist.`);
+      }
       const updatedTodo = await prisma.todo.update({
         where: { id },
         data: { title, updatedAt: new Date() },
@@ -84,6 +93,10 @@ export const DeleteMutation: MutationResolvers<Context> = {
   DeleteTodo: async (_, { input }, { prisma }) => {
     const { id } = input;
     try {
+      const existingTodo = await prisma.todo.findUnique({ where: { id } });
+      if (!existingTodo) {
+        throw new GraphQLError(`Todo with ID ${id} does not exist.`);
+      }
       const deletedTodo = await prisma.todo.delete({
         where: { id },
       });
