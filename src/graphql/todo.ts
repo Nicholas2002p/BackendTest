@@ -1,5 +1,5 @@
-import { Context } from './context';
-import { MutationResolvers } from './generated/graphql';
+import { Context } from "./context";
+import { MutationResolvers } from "./generated/graphql";
 
 export const Mutation: MutationResolvers<Context> = {
   //insert a new Todo
@@ -25,16 +25,16 @@ export const Mutation: MutationResolvers<Context> = {
         updatedAt: newTodo.updatedAt.toISOString(),
       };
     } catch (error) {
-      console.error('Error creating todo:', error);
-      throw new Error('Error creating Todo');
+      console.error("Error creating todo:", error);
+      throw new Error("Error creating Todo");
     }
   },
 };
 
 export const MutationCompletion: MutationResolvers<Context> = {
   //update Completed field
-    updateTodoCompletion: async (_, { input }, { prisma }) => {
-    const { id, completed } = input; 
+  updateTodoCompletion: async (_, { input }, { prisma }) => {
+    const { id, completed } = input;
 
     try {
       const updatedTodo = await prisma.todo.update({
@@ -50,16 +50,16 @@ export const MutationCompletion: MutationResolvers<Context> = {
         updatedAt: updatedTodo.updatedAt.toISOString(),
       };
     } catch (error) {
-      console.error('Error updating todo Completed field:', error);
-      throw new Error('Error updating Todo Completed field');
+      console.error("Error updating todo Completed field:", error);
+      throw new Error("Error updating Todo Completed field");
     }
   },
 };
 
 export const MutationTitle: MutationResolvers<Context> = {
-    //update Title field
-    updateTodoTitle: async (_, { input }, { prisma }) => {
-    const { id, title } = input; 
+  //update Title field
+  updateTodoTitle: async (_, { input }, { prisma }) => {
+    const { id, title } = input;
 
     try {
       const updatedTodo = await prisma.todo.update({
@@ -75,8 +75,8 @@ export const MutationTitle: MutationResolvers<Context> = {
         updatedAt: updatedTodo.updatedAt.toISOString(),
       };
     } catch (error) {
-      console.error('Error updating todo Title field:', error);
-      throw new Error('Error updating Todo Title field');
+      console.error("Error updating todo Title field:", error);
+      throw new Error("Error updating Todo Title field");
     }
   },
 };

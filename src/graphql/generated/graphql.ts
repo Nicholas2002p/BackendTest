@@ -25,6 +25,10 @@ export type CreateTodoInput = {
   title: Scalars['String']['input'];
 };
 
+export type IdTodo = {
+  id: Scalars['ID']['input'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createSomething: Something;
@@ -59,6 +63,12 @@ export type Query = {
   allIncompleteTodos?: Maybe<Array<Todo>>;
   allTodos?: Maybe<Array<Todo>>;
   hello?: Maybe<Scalars['String']['output']>;
+  specificTodo?: Maybe<Todo>;
+};
+
+
+export type QuerySpecificTodoArgs = {
+  input: IdTodo;
 };
 
 export type Something = {
@@ -161,6 +171,7 @@ export type ResolversTypes = {
   CreateSomethingInput: CreateSomethingInput;
   CreateTodoInput: CreateTodoInput;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
+  IdTodo: IdTodo;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   Something: ResolverTypeWrapper<Something>;
@@ -176,6 +187,7 @@ export type ResolversParentTypes = {
   CreateSomethingInput: CreateSomethingInput;
   CreateTodoInput: CreateTodoInput;
   ID: Scalars['ID']['output'];
+  IdTodo: IdTodo;
   Mutation: {};
   Query: {};
   Something: Something;
@@ -197,6 +209,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   allIncompleteTodos?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType>;
   allTodos?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType>;
   hello?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  specificTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<QuerySpecificTodoArgs, 'input'>>;
 };
 
 export type SomethingResolvers<ContextType = any, ParentType extends ResolversParentTypes['Something'] = ResolversParentTypes['Something']> = {

@@ -3,9 +3,19 @@ import { Router } from "express";
 import { createYoga, createSchema, useExtendContext } from "graphql-yoga";
 import { typeDefs } from "./typeDefinitions";
 import { PrismaClient } from "@prisma/client";
-import { Query as HiQuery, findAllTodo, findAllImcompleteTodos,findAllCompletedTodos } from "./query";
+import {
+  Query as HiQuery,
+  findAllTodo,
+  findAllImcompleteTodos,
+  findAllCompletedTodos,
+  GetTodoById
+} from "./query";
 import { Mutation as MutationFromMutation } from "./mutation";
-import { Mutation as MutationFromTodo, MutationCompletion, MutationTitle } from "./todo"; 
+import {
+  Mutation as MutationFromTodo,
+  MutationCompletion,
+  MutationTitle,
+} from "./todo";
 
 const prisma = new PrismaClient();
 
@@ -15,14 +25,15 @@ const Mutation = {
   ...MutationFromMutation,
   ...MutationFromTodo,
   ...MutationCompletion,
-  ...MutationTitle
+  ...MutationTitle,
 };
 const Query = {
   ...HiQuery,
   ...findAllTodo,
   ...findAllImcompleteTodos,
-  ...findAllCompletedTodos
-}
+  ...findAllCompletedTodos,
+  ...GetTodoById
+};
 
 const schema = createSchema({
   typeDefs,
