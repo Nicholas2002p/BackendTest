@@ -9,7 +9,8 @@ import {
   findAllImcompleteTodos,
   findAllCompletedTodos,
   GetTodoById,
-  findAllTodoPages
+  findAllTodoPages,
+  findAllTodosCreatedAndCompleted
 } from "./query";
 import { Mutation as MutationFromMutation } from "./mutation";
 import {
@@ -36,7 +37,8 @@ const Query = {
   ...findAllImcompleteTodos,
   ...findAllCompletedTodos,
   ...GetTodoById,
-  ...findAllTodoPages
+  ...findAllTodoPages,
+  ...findAllTodosCreatedAndCompleted
 };
 
 const schema = createSchema({

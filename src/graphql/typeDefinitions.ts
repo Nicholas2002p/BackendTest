@@ -50,5 +50,7 @@ export const typeDefs = /* GraphQL */ `
     allIncompleteTodos: [Todo!]
     allCompletedTodos: [Todo!]
     specificTodo(input: IdTodo!): Todo
+    allCompletedandCreatedTodos(date:String!, completed:Boolean!): [Todo!]
+
   }
 `;
