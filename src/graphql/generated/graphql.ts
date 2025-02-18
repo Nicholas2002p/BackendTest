@@ -68,8 +68,15 @@ export type Query = {
   allCompletedTodos?: Maybe<Array<Todo>>;
   allIncompleteTodos?: Maybe<Array<Todo>>;
   allTodos?: Maybe<Array<Todo>>;
+  allTodosPages?: Maybe<Array<Todo>>;
   hello?: Maybe<Scalars['String']['output']>;
   specificTodo?: Maybe<Todo>;
+};
+
+
+export type QueryAllTodosPagesArgs = {
+  limit: Scalars['Int']['input'];
+  start: Scalars['Int']['input'];
 };
 
 
@@ -178,6 +185,7 @@ export type ResolversTypes = {
   CreateTodoInput: CreateTodoInput;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   IdTodo: IdTodo;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   Something: ResolverTypeWrapper<Something>;
@@ -194,6 +202,7 @@ export type ResolversParentTypes = {
   CreateTodoInput: CreateTodoInput;
   ID: Scalars['ID']['output'];
   IdTodo: IdTodo;
+  Int: Scalars['Int']['output'];
   Mutation: {};
   Query: {};
   Something: Something;
@@ -215,6 +224,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   allCompletedTodos?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType>;
   allIncompleteTodos?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType>;
   allTodos?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType>;
+  allTodosPages?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType, RequireFields<QueryAllTodosPagesArgs, 'limit' | 'start'>>;
   hello?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   specificTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<QuerySpecificTodoArgs, 'input'>>;
 };

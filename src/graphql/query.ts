@@ -94,3 +94,25 @@ export const GetTodoById: IQuery<Context> = {
     }
   },
 };
+//extra
+export const findAllTodoPages: IQuery<Context> = {
+  allTodosPages: async(_, {limit = 10, start=0}, { prisma }) => {
+    try {
+      const allTodo = await prisma.todo.findMany({
+        skip: start,
+        take: limit
+      });
+
+      return allTodo.map((todo) => ({
+        id: todo.id,
+        title: todo.title,
+        completed: todo.completed,
+        createdAt: todo.createdAt.toISOString(),
+        updatedAt: todo.updatedAt.toISOString(),
+      }));
+    } catch (error) {
+      console.error("Error fetching all todos:", error);
+      throw new Error("Error fetching all todos");
+    }
+  },
+};
