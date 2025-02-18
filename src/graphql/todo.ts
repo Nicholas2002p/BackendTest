@@ -29,7 +29,9 @@ export const Mutation: MutationResolvers<Context> = {
       throw new Error('Error creating Todo');
     }
   },
+};
 
+export const MutationCompletion: MutationResolvers<Context> = {
   //update Completed field
     updateTodoCompletion: async (_, { input }, { prisma }) => {
     const { id, completed } = input; 
@@ -52,6 +54,9 @@ export const Mutation: MutationResolvers<Context> = {
       throw new Error('Error updating Todo Completed field');
     }
   },
+};
+
+export const MutationTitle: MutationResolvers<Context> = {
     //update Title field
     updateTodoTitle: async (_, { input }, { prisma }) => {
     const { id, title } = input; 

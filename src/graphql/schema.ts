@@ -5,7 +5,7 @@ import { typeDefs } from "./typeDefinitions";
 import { PrismaClient } from "@prisma/client";
 import { Query } from "./query";
 import { Mutation as MutationFromMutation } from "./mutation";
-import { Mutation as MutationFromTodo } from "./todo"; 
+import { Mutation as MutationFromTodo, MutationCompletion, MutationTitle } from "./todo"; 
 
 const prisma = new PrismaClient();
 
@@ -14,6 +14,8 @@ const yogaPublicRouter = Router();
 const Mutation = {
   ...MutationFromMutation,
   ...MutationFromTodo,
+  ...MutationCompletion,
+  ...MutationTitle
 };
 
 const schema = createSchema({
