@@ -23,7 +23,7 @@ export const findAllTodo: IQuery<Context> = {
     }
   },
 };
-
+//get todo that are NOT completed (false)
 export const findAllImcompleteTodos: IQuery<Context> = {
   allIncompleteTodos: async (_, __, { prisma }) => {
     try {
@@ -47,6 +47,7 @@ export const findAllImcompleteTodos: IQuery<Context> = {
   },
 };
 
+//get todo that are completed (true)
 export const findAllCompletedTodos: IQuery<Context> = {
   allCompletedTodos: async (_, __, { prisma }) => {
     try {
@@ -70,6 +71,7 @@ export const findAllCompletedTodos: IQuery<Context> = {
   },
 };
 
+//get todo by id
 export const GetTodoById: IQuery<Context> = {
   specificTodo: async (_, { input }, { prisma }) => {
     const { id } = input;
@@ -95,6 +97,7 @@ export const GetTodoById: IQuery<Context> = {
   },
 };
 //extra
+//allows user to select how many todos they want and from any starting point (pagination)
 export const findAllTodoPages: IQuery<Context> = {
   allTodosPages: async (_, { limit = 10, start = 0 }, { prisma }) => {
     try {
@@ -117,6 +120,7 @@ export const findAllTodoPages: IQuery<Context> = {
   },
 };
 
+//function takes in a date and will give todos that match the completed and CreatedAt befor the date given
 export const findAllTodosCreatedAndByCompleted: IQuery<Context> = {
   allCompletedandCreatedTodos: async (_, { date, completed }, { prisma }) => {
     try {
@@ -148,6 +152,7 @@ export const findAllTodosCreatedAndByCompleted: IQuery<Context> = {
   },
 };
 
+//function takes in a date and will give todos that match the completed and sorts it by CreatedAt
 export const findAllTodosCompletedandSorted: IQuery<Context> = {
   allCompletedandSortByCreated: async (_, { completed }, { prisma }) => {
     try {
