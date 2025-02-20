@@ -46,11 +46,11 @@ export const typeDefs = /* GraphQL */ `
   type Query {
     hello: String
     allTodos: [Todo!]
-    allTodosPages(limit:Int!, start: Int!): [Todo!]
+    allTodosPages(limit: Int!, start: Int!): [Todo!]
     allIncompleteTodos: [Todo!]
     allCompletedTodos: [Todo!]
     specificTodo(input: IdTodo!): Todo
-    allCompletedandCreatedTodos(date:String!, completed:Boolean!): [Todo!]
-    allCompletedandSortByCreated(completed:Boolean!): [Todo!]
+    allCompletedandCreatedTodos(date: String!, completed: Boolean!): [Todo!]
+    allCompletedandSortByCreated(completed: Boolean!): [Todo!]
   }
 `;

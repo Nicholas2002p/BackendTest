@@ -11,14 +11,14 @@ import {
   GetTodoById,
   findAllTodoPages,
   findAllTodosCreatedAndByCompleted,
-  findAllTodosCompletedandSorted
+  findAllTodosCompletedandSorted,
 } from "./query";
 import { Mutation as MutationFromMutation } from "./mutation";
 import {
   Mutation as MutationFromTodo,
   MutationCompletion,
   MutationTitle,
-  DeleteMutation
+  DeleteMutation,
 } from "./todo";
 
 const prisma = new PrismaClient();
@@ -30,7 +30,7 @@ const Mutation = {
   ...MutationFromTodo,
   ...MutationCompletion,
   ...MutationTitle,
-  ...DeleteMutation
+  ...DeleteMutation,
 };
 const Query = {
   ...HiQuery,
@@ -40,7 +40,7 @@ const Query = {
   ...GetTodoById,
   ...findAllTodoPages,
   ...findAllTodosCreatedAndByCompleted,
-  ...findAllTodosCompletedandSorted
+  ...findAllTodosCompletedandSorted,
 };
 
 const schema = createSchema({

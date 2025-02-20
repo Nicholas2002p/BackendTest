@@ -148,7 +148,6 @@ export const findAllTodosCreatedAndByCompleted: IQuery<Context> = {
   },
 };
 
-
 export const findAllTodosCompletedandSorted: IQuery<Context> = {
   allCompletedandSortByCreated: async (_, { completed }, { prisma }) => {
     try {
@@ -157,8 +156,8 @@ export const findAllTodosCompletedandSorted: IQuery<Context> = {
           completed: completed,
         },
         orderBy: {
-          createdAt: 'desc'
-        }
+          createdAt: "desc",
+        },
       });
 
       return allTodo.map((todo) => ({
