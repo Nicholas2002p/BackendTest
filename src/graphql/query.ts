@@ -117,7 +117,7 @@ export const findAllTodoPages: IQuery<Context> = {
   },
 };
 
-export const findAllTodosCreatedAndCompleted: IQuery<Context> = {
+export const findAllTodosCreatedAndByCompleted: IQuery<Context> = {
   allCompletedandCreatedTodos: async (_, { date, completed }, { prisma }) => {
     try {
       const dateObject = new Date(date);
@@ -132,6 +132,33 @@ export const findAllTodosCreatedAndCompleted: IQuery<Context> = {
             lte: dateObject,
           },
         },
+      });
+
+      return allTodo.map((todo) => ({
+        id: todo.id,
+        title: todo.title,
+        completed: todo.completed,
+        createdAt: todo.createdAt.toISOString(),
+        updatedAt: todo.updatedAt.toISOString(),
+      }));
+    } catch (error) {
+      console.error("Error fetching all todos:", error);
+      throw new Error("Error fetching all todos");
+    }
+  },
+};
+
+
+export const findAllTodosCompletedandSorted: IQuery<Context> = {
+  allCompletedandSortByCreated: async (_, { completed }, { prisma }) => {
+    try {
+      const allTodo = await prisma.todo.findMany({
+        where: {
+          completed: completed,
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
       });
 
       return allTodo.map((todo) => ({

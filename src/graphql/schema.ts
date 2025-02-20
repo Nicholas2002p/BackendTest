@@ -10,7 +10,8 @@ import {
   findAllCompletedTodos,
   GetTodoById,
   findAllTodoPages,
-  findAllTodosCreatedAndCompleted
+  findAllTodosCreatedAndByCompleted,
+  findAllTodosCompletedandSorted
 } from "./query";
 import { Mutation as MutationFromMutation } from "./mutation";
 import {
@@ -38,7 +39,8 @@ const Query = {
   ...findAllCompletedTodos,
   ...GetTodoById,
   ...findAllTodoPages,
-  ...findAllTodosCreatedAndCompleted
+  ...findAllTodosCreatedAndByCompleted,
+  ...findAllTodosCompletedandSorted
 };
 
 const schema = createSchema({

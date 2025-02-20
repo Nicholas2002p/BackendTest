@@ -67,6 +67,7 @@ export type Query = {
   __typename?: 'Query';
   allCompletedTodos?: Maybe<Array<Todo>>;
   allCompletedandCreatedTodos?: Maybe<Array<Todo>>;
+  allCompletedandSortByCreated?: Maybe<Array<Todo>>;
   allIncompleteTodos?: Maybe<Array<Todo>>;
   allTodos?: Maybe<Array<Todo>>;
   allTodosPages?: Maybe<Array<Todo>>;
@@ -78,6 +79,11 @@ export type Query = {
 export type QueryAllCompletedandCreatedTodosArgs = {
   completed: Scalars['Boolean']['input'];
   date: Scalars['String']['input'];
+};
+
+
+export type QueryAllCompletedandSortByCreatedArgs = {
+  completed: Scalars['Boolean']['input'];
 };
 
 
@@ -230,6 +236,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   allCompletedTodos?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType>;
   allCompletedandCreatedTodos?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType, RequireFields<QueryAllCompletedandCreatedTodosArgs, 'completed' | 'date'>>;
+  allCompletedandSortByCreated?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType, RequireFields<QueryAllCompletedandSortByCreatedArgs, 'completed'>>;
   allIncompleteTodos?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType>;
   allTodos?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType>;
   allTodosPages?: Resolver<Maybe<Array<ResolversTypes['Todo']>>, ParentType, ContextType, RequireFields<QueryAllTodosPagesArgs, 'limit' | 'start'>>;

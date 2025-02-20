@@ -51,6 +51,6 @@ export const typeDefs = /* GraphQL */ `
     allCompletedTodos: [Todo!]
     specificTodo(input: IdTodo!): Todo
     allCompletedandCreatedTodos(date:String!, completed:Boolean!): [Todo!]
-
+    allCompletedandSortByCreated(completed:Boolean!): [Todo!]
   }
 `;
